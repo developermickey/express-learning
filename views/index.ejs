@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("./partials/navbar.ejs"); %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-     <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    <section class="min-h-screen relative px-4 overflow-hidden">
+        <h6 class="sub_text header">Experience a faster, easier and more reliable way to sell your gift cards for naira
+            with Quchange</h6>
 
-<body>
+        <div class="banner-btn">
+            <a href="https://app.thequchange.io/Signup" target="_blank"><img src="IMG/webpurple.svg"
+                    alt="Sell Gift Cards for Naira on Quchange Website" class="stacked_card3"></a>
 
-    <h1>
-        <%= title %> From EJS
-    </h1>
-</body>
+            <a href="https://apps.apple.com/us/app/quchange/id1579616139" target="_blank"><img src="IMG/app_store.svg"
+                    alt="Download the Quchange from the App Store" class="stacked_card"></a>
 
-</html>
+            <a href="https://play.google.com/store/apps/details?id=com.pixels.qtrader" target="_blank"><img
+                    src="IMG/google_play.svg" alt="Download the Quchange app on Google Play" class="stacked_card"></a>
+
+        </div>
+    </section>
+
+
+    <%- include("./partials/footer.ejs"); %>

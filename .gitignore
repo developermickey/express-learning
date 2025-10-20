@@ -1,0 +1,17 @@
+node_modules
+.env
+dist
+coverage
+.vscode
+.DS_Store
+npm-debug.log
+yarn-error.log
+.idea
+*.log
+*.tsbuildinfo
+/build
+/out
+.cache
+*.local
+*.bak
+*.swp

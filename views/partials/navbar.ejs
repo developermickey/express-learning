@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= title %>
+        <%= title || 'Blog' %>
     </title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -15,10 +15,37 @@
         <img src="https://www.thequchange.com/IMG/logo.svg" alt="Quchange Logo" class="w-52 h-auto cursor-pointer"
             onclick="window.location.href='./'">
         <div class="flex items-center gap-6">
-            <a href="/" class="font-semibold text-lg"> Home </a>
-            <a href="/about" class="font-semibold text-lg"> About Us </a>
-            <a href="/blog" class="font-semibold text-lg"> Blog </a>
-            <a href="/contact" class="font-semibold text-lg"> Contact Us </a>
-            <a href="/login" class="font-semibold text-lg bg-green-600 px-6 py-2 rounded-full"> Login </a>
+            <a href="/" class="font-semibold text-lg hover:text-green-400 transition"> Home </a>
+            <a href="/about" class="font-semibold text-lg hover:text-green-400 transition"> About Us </a>
+            <a href="/blog" class="font-semibold text-lg hover:text-green-400 transition"> Blog </a>
+            <a href="/contact" class="font-semibold text-lg hover:text-green-400 transition"> Contact Us </a>
+
+            <% if (isLoggedIn) { %>
+                <!-- Show Profile and Logout when logged in -->
+                <a href="/profile"
+                    class="font-semibold text-lg bg-blue-600 px-6 py-2 rounded-full hover:bg-blue-700 transition">
+                    Profile
+                </a>
+                <a href="/logout"
+                    class="font-semibold text-lg bg-red-600 px-6 py-2 rounded-full hover:bg-red-700 transition">
+                    Logout
+                </a>
+                <% } else { %>
+                    <!-- Show Login and Signup when not logged in -->
+                    <a href="/login"
+                        class="font-semibold text-lg bg-green-600 px-6 py-2 rounded-full hover:bg-green-700 transition">
+                        Login
+                    </a>
+                    <a href="/signup"
+                        class="font-semibold text-lg bg-purple-600 px-6 py-2 rounded-full hover:bg-purple-700 transition">
+                        Sign Up
+                    </a>
+                    <% } %>
         </div>
     </nav>
+
+    <!-- Your page content here -->
+
+</body>
+
+</html>

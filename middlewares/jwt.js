@@ -1,26 +1,37 @@
 const jwt = require("jsonwebtoken");
+
 const jwtAuthMiddleware = (req, res, next) => {
-  const token = req.header("Authorization").split(" ")[1];
-  if (!token) {
-    return res.status(401).json({
-      message: "No token, authorization denied",
-      success: false,
-    });
-  }
   try {
+    // ✅ Check if cookies exist
+    if (!req.cookies) {
+      console.error("req.cookies is undefined - cookie-parser not configured");
+      return res.status(500).render("error", {
+        title: "Server Error",
+        message: "Cookie parser not configured properly",
+      });
+    }
+
+    const token = req.cookies.token;
+
+    if (!token) {
+      // Redirect to login page instead of returning JSON
+      return res.redirect("/login");
+    }
+
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    req.user = decoded.user;
+    req.user = decoded; // or decoded.user if you wrap it
     next();
   } catch (error) {
-    return res.status(500).json({
-      message: "Invalid token",
-      success: false,
-    });
+    console.error("JWT Error:", error.message);
+
+    // Clear invalid cookie and redirect to login
+    res.clearCookie("token");
+    return res.redirect("/login");
   }
 };
 
 const generateToken = (userData) => {
-  return jwt.sign({ user: userData }, process.env.SECRET_KEY, {
+  return jwt.sign(userData, process.env.SECRET_KEY, {
     expiresIn: "1h",
   });
 };
